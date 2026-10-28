@@ -27,14 +27,14 @@ class FoodOrderApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Roboto',
       ),
-      home: OnboardingPage(
-        onContinue: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => const OrdersPage(),
-            ),
-          );
-        },
+      home: Builder(
+        builder: (context) => OnboardingPage(
+          onContinue: () {
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute<void>(builder: (_) => const OrdersPage()));
+          },
+        ),
       ),
     );
   }

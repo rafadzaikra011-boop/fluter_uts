@@ -101,64 +101,72 @@ class _FoodIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 270,
-      width: 270,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            height: 238,
-            width: 238,
-            decoration: const BoxDecoration(
-              color: Color(0xFFFFE6D5),
-              shape: BoxShape.circle,
-            ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final size = constraints.maxWidth < 270 ? constraints.maxWidth : 270.0;
+        final imageSize = size * 0.78;
+
+        return SizedBox(
+          height: size,
+          width: size,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: size * 0.88,
+                width: size * 0.88,
+                decoration: const BoxDecoration(
+                  color: Color(0xFFFFE6D5),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(imageSize / 2),
+                child: Image.network(
+                  'https://images.unsplash.com/photo-1504674900247-0877df9cc836'
+                  '?auto=format&fit=crop&w=700&q=85',
+                  height: imageSize,
+                  width: imageSize,
+                  fit: BoxFit.cover,
+                  semanticLabel: 'A table filled with delicious food',
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      height: imageSize,
+                      width: imageSize,
+                      color: const Color(0xFFFFD6B8),
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.restaurant,
+                        color: const Color(0xFFF36B32),
+                        size: imageSize * 0.39,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Positioned(
+                right: 0,
+                bottom: size * 0.07,
+                child: _IllustrationBadge(
+                  icon: Icons.delivery_dining,
+                  backgroundColor: const Color(0xFFF36B32),
+                  size: size * 0.21,
+                ),
+              ),
+              Positioned(
+                left: 0,
+                top: size * 0.09,
+                child: _IllustrationBadge(
+                  icon: Icons.favorite,
+                  backgroundColor: Colors.white,
+                  iconColor: const Color(0xFFE95B4B),
+                  size: size * 0.18,
+                ),
+              ),
+            ],
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(110),
-            child: Image.network(
-              'https://images.unsplash.com/photo-1504674900247-0877df9cc836'
-              '?auto=format&fit=crop&w=700&q=85',
-              height: 210,
-              width: 210,
-              fit: BoxFit.cover,
-              semanticLabel: 'A table filled with delicious food',
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  height: 210,
-                  width: 210,
-                  color: const Color(0xFFFFD6B8),
-                  alignment: Alignment.center,
-                  child: const Icon(
-                    Icons.restaurant,
-                    color: Color(0xFFF36B32),
-                    size: 82,
-                  ),
-                );
-              },
-            ),
-          ),
-          Positioned(
-            right: 2,
-            bottom: 20,
-            child: _IllustrationBadge(
-              icon: Icons.delivery_dining,
-              backgroundColor: const Color(0xFFF36B32),
-            ),
-          ),
-          Positioned(
-            left: 3,
-            top: 24,
-            child: _IllustrationBadge(
-              icon: Icons.favorite,
-              backgroundColor: Colors.white,
-              iconColor: const Color(0xFFE95B4B),
-              size: 48,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

@@ -1,17 +1,28 @@
-# food_order_app
+# Food Order App
 
-A new Flutter project.
+Flutter mobile app for the UTS onboarding and food order list tasks.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Onboarding page with the title “All your favorites”, food illustration,
+  description, NEXT button, and Skip link.
+- Food order page displaying all four `dummyOrders` using `ListView.builder`.
+- Done and Cancel actions update each order's status.
 
-A few resources to get you started if this is your first Flutter project:
+Food images load from Unsplash and show an icon placeholder if the device
+cannot load an image.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```shell
+flutter pub get
+flutter run
+```
+
+Tap NEXT or Skip to open the order list.
+
+## Test
+
+```shell
+flutter test
+```
